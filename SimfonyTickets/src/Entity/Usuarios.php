@@ -4,13 +4,15 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+use Symfony\Component\Security\Core\User\UserInterface;
+
 /**
  * Usuarios
  *
  * @ORM\Table(name="usuarios", indexes={@ORM\Index(name="Pais_id", columns={"Pais_id"})})
  * @ORM\Entity
  */
-class Usuarios
+class Usuarios implements UserInterface
 {
     /**
      * @var int
@@ -24,7 +26,7 @@ class Usuarios
     /**
      * @var string
      *
-     * @ORM\Column(name="DNI", type="string", length=9, nullable=false)
+     * @ORM\Column(name="DNI", type="string", length=9, nullable=true)
      */
     private $dni;
 
@@ -38,7 +40,7 @@ class Usuarios
     /**
      * @var string
      *
-     * @ORM\Column(name="Apellido", type="string", length=255, nullable=false)
+     * @ORM\Column(name="Apellido", type="string", length=255, nullable=true)
      */
     private $apellido;
 
@@ -50,18 +52,18 @@ class Usuarios
     private $apellido2;
 
     /**
-     * @var string
+     * @var string 
      *
-     * @ORM\Column(name="Correo", type="string", length=255, nullable=false)
+     * @ORM\Column(name="Correo", type="string", length=255, nullable=false, unique=true)
      */
     private $correo;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="Contraseña", type="string", length=255, nullable=false)
+     * @ORM\Column(name="Contrasena", type="string", length=255, nullable=false)
      */
-    private $contraseña;
+    private $contrasena;
 
     /**
      * @var string|null
@@ -89,10 +91,65 @@ class Usuarios
      *
      * @ORM\ManyToOne(targetEntity="Pais")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="Pais_id", referencedColumnName="Id")
+     *   @ORM\JoinColumn(name="Pais_id", referencedColumnName="Id", nullable=true)
      * })
      */
     private $pais;
+
+    // Necesario para la interfaz UserInterface
+    /**
+     * @ORM\Column(type="json")
+     */
+    private $roles = [];
+
+
+    //Administracion usuarios
+    //Implementamos los metodos de la interfaz (si, es un copia y pega)
+
+    /**
+     * The public representation of the user (e.g. a username, an email address, etc.)
+     *
+     * @see UserInterface
+     */
+    public function getUserIdentifier(): string
+    {
+        return (string) $this->correo; //cambiado email por correo
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials()
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
+    }
+
+
+    /*
+    //////////////////////////////////////
+    ////////  Setters and getters  //////
+    /////////////////////////////////////
+    */
 
     public function getId(): ?int
     {
@@ -159,14 +216,14 @@ class Usuarios
         return $this;
     }
 
-    public function getContraseña(): ?string
+    public function getContrasena(): ?string
     {
-        return $this->contraseña;
+        return $this->contrasena;
     }
 
-    public function setContraseña(string $contraseña): self
+    public function setContrasena(string $contrasena): self
     {
-        $this->contraseña = $contraseña;
+        $this->contrasena = $contrasena;
 
         return $this;
     }

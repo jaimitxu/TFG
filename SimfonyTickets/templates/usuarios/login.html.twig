@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block body %}
+
+<div>
+    <p> Hola </p>
+</div>
+
+<form action="{{ path('app_usuarios_login') }}" method="post">
+        <label for="username">Email:</label>
+        <input type="text" id="username" name="_username" value=""/>
+
+        {# If you want to control the URL the user is redirected to on success
+        <input type="hidden" name="_target_path" value="/account"/> #}
+
+        <button type="submit">login</button>
+    </form>
+    {{dump(app)}}
+    {# {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+    <p>Email: {{ app.user.email }}</p>
+    {% endif %} #}
+
+{% endblock %}
