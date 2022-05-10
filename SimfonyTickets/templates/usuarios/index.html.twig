@@ -1,3 +1,4 @@
+
 {% extends 'base.html.twig' %}
 
 {% block title %}Hello UsuariosController!{% endblock %}
@@ -17,11 +18,14 @@
         <li>Your template at <code><a href="{{ 'C:/xampp/htdocs/TFG/SimfonyTickets/templates/usuarios/index.html.twig'|file_link(0) }}">templates/usuarios/index.html.twig</a></code></li>
     </ul>
 
+    {% if is_granted('ROLE_USER') %}
+        <h2> Si estas viendo esto estas logeado como: ' {{app.user.nombre}} '!! wiiiii  </h2>
+    {% endif %}
+
+
     {{ form(form) }}
 
     {# {{ form_start(form) }}
-
-
     {{ form_end(form) }} #}
 </div>
 {% endblock %}
