@@ -1,4 +1,4 @@
-DROP DATABASE SymfonyTickets;
+DROP DATABASE if exists SymfonyTickets;
 
 CREATE DATABASE SymfonyTickets;
 
@@ -14,16 +14,17 @@ CREATE TABLE Pais(
 
 CREATE TABLE Usuarios (
  Id int UNSIGNED NOT NULL AUTO_INCREMENT,
- DNI VARCHAR(9) NOT NULL,
+ DNI VARCHAR(9) ,
  Nombre VARCHAR(255) NOT NULL,
- Apellido VARCHAR(255) NOT NULL,
+ Apellido VARCHAR(255),
  Apellido2 VARCHAR(255),
- Correo VARCHAR(255) NOT NULL,
- Contraseña VARCHAR(255) NOT NULL,
+ Correo VARCHAR(255) NOT NULL unique,
+ Contrasena VARCHAR(255) NOT NULL,
  Direccion VARCHAR(255),
- Pais_id INT UNSIGNED NOT NULL,
+ Pais_id INT UNSIGNED,
  Telefono INT,
  Boletin BOOLEAN,
+ Roles VARCHAR(255),
   PRIMARY KEY(Id),
   FOREIGN KEY (Pais_id) REFERENCES Pais(Id)
 );
