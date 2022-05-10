@@ -11,6 +11,8 @@ use App\Entity\Usuarios;
 use App\Form\UsuarioType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class UsuariosController extends AbstractController
 {
@@ -33,7 +35,7 @@ class UsuariosController extends AbstractController
 
     //Metodo que da de alta a los usuarios
     #[Route('/usuarios/alta', name:'app_usuarios_alta')]
-    public function altaUsuario(Request $request, ManagerRegistry $doctrine): Response
+    public function altaUsuario(Request $request, ManagerRegistry $doctrine, UserPasswordHasherInterface $passwordHasher): Response
     {
 
         $usuario = new Usuarios(); //Creamos un usuario nuevo (vacio)
@@ -43,6 +45,12 @@ class UsuariosController extends AbstractController
         $form->submit($request->request->all('usuario')); //recogemos de la request la informacion del formulario del twig de tipo usuario y lo introducimos dentro del formulario vacio.
 
         $usuario = $form->getData(); //cogemos los datos del formulario y los convertimos en un objeto "Usuario"
+
+        $contra = $usuario->getContrasena();
+
+        $hashedContra = $passwordHasher->hashPassword($usuario,$contra);
+
+        $usuario->setContrasena($hashedContra);
 
         $entityManager = $doctrine->getManager(); //creamos el manager para gestionar la subida a la base de datos
         
@@ -55,12 +63,21 @@ class UsuariosController extends AbstractController
     }
 
     #[Route ('usuarios/login', name:'app_usuarios_login')]
-    public function login(): Response
+    public function login(AuthenticationUtils $authenticationUtils): Response
     {
+        // dd($authenticationUtils);
+        // get the login error if there is one
+         $error = $authenticationUtils->getLastAuthenticationError();
 
+         // last username entered by the user
+            //dd($authenticationUtils->getLastUsername());
+        $lastUsername = $authenticationUtils->getLastUsername();
+        
 
-
-        return $this->render('usuarios/login.html.twig');
+        return $this->render('usuarios/login.html.twig',[
+            'last_username' => $lastUsername,
+            'error'         => $error,
+        ]);
     }
 
 }

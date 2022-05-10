@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Artistas{% endblock %}
+
+{% block body %}
+    <h1>Create new Artistas</h1>
+
+    {{ include('artistas/_form.html.twig') }}
+
+    <a href="{{ path('app_artistas_index') }}" class="btn btn-danger">back to list</a>
+{% endblock %}
