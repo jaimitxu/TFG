@@ -4,22 +4,22 @@
 
 {% block body %}
 
-<div>
-    <p> Hola </p>
-</div>
-{{dump(last_username, error)}}
 
-<form action="{{ path('app_usuarios_login') }}" method="post">
-        <label for="correo">Email:</label>
-        <input type="text" id="correo" name="_correo" value=""/>
-        <input type="text" id="contrasena" name="_contrasena" value="admin"/>
+{# {{dump(last_username, error)}} #}
+    <div class="container">
+        <form action="{{ path('app_usuarios_login') }}" method="post">
+            <div class="col-3" >
+                <label class="form-label" for="correo">Email:</label>
+                <input class="form-control" type="text" id="correo" name="_correo" value=""/>
+                <label class="form-label" for="correo">Contraseña:</label>
+                <input class="form-control" type="text" id="contrasena" name="_contrasena" value="admin"/>
+            </div>
+                {# If you want to control the URL the user is redirected to on success
+                <input type="hidden" name="_target_path" value="/account"/> #}
 
-        {# If you want to control the URL the user is redirected to on success
-        <input type="hidden" name="_target_path" value="/account"/> #}
-
-        <button type="submit">login</button>
-    </form>
-    
+                <button class="btn btn-primary" type="submit">login</button>
+        </form>
+    </div>
     {# {% if is_granted('IS_AUTHENTICATED_FULLY') %}
     <p>Email: {{ app.user.email }}</p>
     {% endif %} #}

@@ -30,12 +30,14 @@
     <body>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container float-end">
+        <div class="container">
+            <div class="float-end">
             {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
                 {{app.user.nombre}} ------ <a href="{{ path('app_usuarios_logout')}}">logout</a>
             {% else %}
                 <a href="{{ path('app_usuarios_login') }}" > log in </a>
             {% endif %}
+            </div>
         </div>
     </nav>
 
