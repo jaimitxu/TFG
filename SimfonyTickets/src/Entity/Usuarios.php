@@ -3,7 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
@@ -12,7 +12,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @ORM\Table(name="usuarios", indexes={@ORM\Index(name="Pais_id", columns={"Pais_id"})})
  * @ORM\Entity
  */
-class Usuarios implements UserInterface
+class Usuarios implements UserInterface, PasswordAuthenticatedUserInterface
 {
     /**
      * @var int
@@ -144,6 +144,13 @@ class Usuarios implements UserInterface
         // $this->plainPassword = null;
     }
 
+    /**
+     * @return string the hashed password for this user
+     */
+    public function getPassword(): string
+    {
+        return $this->contrasena;
+    }
 
     /*
     //////////////////////////////////////

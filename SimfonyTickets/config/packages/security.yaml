@@ -15,9 +15,18 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
+            form_login:
+                username_parameter: _correo
+                password_parameter: _contrasena
+                check_path: /usuarios/login
+                login_path: /usuarios/login
+                default_target_path: /usuarios
+            logout:
+                path: app_usuarios_logout
+                target: /home
             lazy: true
-            provider: users_in_memory
-
+            # provider: users_in_memory
+            provider: app_user_provider
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
 
