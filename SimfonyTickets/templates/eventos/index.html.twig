@@ -10,10 +10,10 @@
 			<div class="table-title">
 				<div class="row">
 					<div class="col-sm-6">
-						<h2>Eventos <b>index</b></h2>
+						<h2>lista de <b>Eventos</b></h2>
 					</div>
 					<div class="col-sm-6">
-                        <a href="{{ path('app_eventos_new') }}" class="btn btn-success"><i class="material-icons">&#xE147;</i> <span>Add New</span></a>						
+                        <a href="{{ path('app_eventos_new') }}" class="btn btn-success"><i class="material-icons">&#xE147;</i> <span>Nuevo</span></a>						
 					</div>
 				</div>
 			</div>
@@ -47,8 +47,8 @@
                         <td>{{ evento.duracion }}</td>
                         <td>{{ evento.fechaCreacion ? evento.fechaCreacion|date('Y-m-d H:i:s') : '' }}</td>
                         <td>
-                            <a href="{{ path('app_eventos_show', {'id': evento.id}) }}">show</a>
-                            <a href="{{ path('app_eventos_edit', {'id': evento.id}) }}">edit</a>
+                            <a href="{{ path('app_eventos_show', {'id': evento.id}) }}"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xe8f4;</i></a>
+                            <a href="{{ path('app_eventos_edit', {'id': evento.id}) }}"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
                         </td>
                     </tr>
                 {% else %}

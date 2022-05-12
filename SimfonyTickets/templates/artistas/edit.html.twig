@@ -3,11 +3,13 @@
 {% block title %}Edit Artistas{% endblock %}
 
 {% block body %}
-    <h1>Edit Artistas</h1>
+<div class="example-wrapper">
+    <h1>Editar Artista</h1>
 
     {{ include('artistas/_form.html.twig', {'button_label': 'Update'}) }}
 
     <a href="{{ path('app_artistas_index') }}" class="btn btn-warning">back to list</a>
 
     {{ include('artistas/_delete_form.html.twig', {'button_label': 'Delete'}) }}
+</div>
 {% endblock %}

@@ -3,7 +3,10 @@
 {% block title %}Artistas index{% endblock %}
 
 {% block body %}
-
+<from>
+	<input name="buscar" type="search">
+	<input type="submit" value="Find">
+</form>
 <body>
 <div class="container-xl">
 	<div class="table-responsive">
@@ -11,10 +14,10 @@
 			<div class="table-title">
 				<div class="row">
 					<div class="col-sm-6">
-						<h2>Artistas <b>index</b></h2>
+						<h2>Lista de <b>Artistas</b></h2>
 					</div>
 					<div class="col-sm-6">
-                        <a href="{{ path('app_artistas_new') }}" class="btn btn-success"><i class="material-icons">&#xE147;</i> <span>Add New</span></a>						
+                        <a href="{{ path('app_artistas_new') }}" class="btn btn-success"><i class="material-icons">&#xE147;</i> <span>Nuevo</span></a>						
 					</div>
 				</div>
 			</div>
@@ -38,7 +41,7 @@
                         <td>{{ artista.descripcion }}</td>
                         <td>{{ artista.notas }}</td>
                         <td>
-                            <a href="{{ path('app_artistas_show', {'id': artista.id}) }}" class="btn btn-warning">show</a>
+                            <a href="{{ path('app_artistas_show', {'id': artista.id}) }}" ><i class="material-icons" data-toggle="tooltip" title="Show">&#xe8f4;</i></a>
                             <a href="{{ path('app_artistas_edit', {'id': artista.id}) }}" ><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
                         </td>
                     </tr>

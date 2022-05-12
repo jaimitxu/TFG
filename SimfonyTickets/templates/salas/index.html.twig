@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Salas index{% endblock %}
+
+{% block body %}
+<body>
+<div class="container-xl">
+	<div class="table-responsive">
+		<div class="table-wrapper">
+			<div class="table-title">
+				<div class="row">
+					<div class="col-sm-6">
+						<h2>lista de <b>Salas</b></h2>
+					</div>
+					<div class="col-sm-6">
+                        <a href="{{ path('app_salas_new') }}" class="btn btn-success"><i class="material-icons">&#xE147;</i> <span>Nuevo</span></a>						
+					</div>
+				</div>
+			</div>
+			<table class="table table-striped table-hover">
+				<thead>
+					<tr>
+                        <th>Id</th>
+                        <th>Nombre</th>
+                        <th>Capacidad</th>
+                        <th>actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for sala in salas %}
+                    <tr>
+                        <td>{{ sala.id }}</td>
+                        <td>{{ sala.nombre }}</td>
+                        <td>{{ sala.capacidad }}</td>
+                        <td>
+                            <a href="{{ path('app_salas_show', {'id': sala.id}) }}"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xe8f4;</i></a>
+                            <a href="{{ path('app_salas_edit', {'id': sala.id}) }}"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                        </td>
+                    </tr>
+                {% else %}
+                <tr>
+                    <td colspan="4">no records found</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <div class="clearfix">
+				<div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
+				<ul class="pagination">
+					<li class="page-item"><a href="#" class="page-link">Previous</a></li>
+					<li class="page-item"><a href="#" class="page-link">1</a></li>
+					<li class="page-item"><a href="#" class="page-link">2</a></li>
+					<li class="page-item"><a href="#" class="page-link">3</a></li>
+					<li class="page-item"><a href="#" class="page-link">4</a></li>
+					<li class="page-item"><a href="#" class="page-link">5</a></li>
+					<li class="page-item"><a href="#" class="page-link">Next</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>        
+</div>
+</body>
+{% endblock %}
