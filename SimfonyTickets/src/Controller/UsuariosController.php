@@ -67,11 +67,11 @@ class UsuariosController extends AbstractController
         //->replyTo('fabien@example.com')
         //->priority(Email::PRIORITY_HIGH)
         ->subject('¡¡Usuario Dado de Alta en Symfony Tickets!!')
-        ->text('Hola querido '+$usuario->getNombre()+" bienvenido a bordo de Symfony Tickets, esperamos que tengas 
-        una gran y completa experiencia artistica, cualquier duda puedes consultarsela a mi primo Paco"+
+        ->text('Hola querido '.$usuario->getNombre()." bienvenido a bordo de Symfony Tickets, esperamos que tengas 
+        una gran y completa experiencia artistica, cualquier duda puedes consultarsela a mi primo Paco".
         "PD: si te ha llegado esto y no sabes porque lo siento, son pruebas de una app :c disculpa las molestias" );
 
-        // $mailer->send($email);  // Enviamos el email
+        $mailer->send($email);  // Enviamos el email
 
         return $this->redirectToRoute('app_usuarios');
     }

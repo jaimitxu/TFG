@@ -6,19 +6,21 @@ framework:
             # https://symfony.com/doc/current/messenger.html#transport-configuration
             async:
                 dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
-                options:
-                    use_notify: true
-                    check_delayed_interval: 60000
-                retry_strategy:
-                    max_retries: 3
-                    multiplier: 2
+                #Victor 12/05
+                # Basicamente el mailer fallaba por esto no entiendo del todo porque pero es esto o el routing de abajo, aparte de la autentificación de gmail -.-
+                # options:
+                #     use_notify: true
+                #     check_delayed_interval: 60000
+                # retry_strategy:
+                #     max_retries: 3
+                #     multiplier: 2
             failed: 'doctrine://default?queue_name=failed'
             # sync: 'sync://'
 
         routing:
-            Symfony\Component\Mailer\Messenger\SendEmailMessage: async
-            Symfony\Component\Notifier\Message\ChatMessage: async
-            Symfony\Component\Notifier\Message\SmsMessage: async
+            # Symfony\Component\Mailer\Messenger\SendEmailMessage: async
+            # Symfony\Component\Notifier\Message\ChatMessage: async
+            # Symfony\Component\Notifier\Message\SmsMessage: async
 
             # Route your messages to the transports
             # 'App\Message\YourMessage': async
