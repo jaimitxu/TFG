@@ -16,6 +16,8 @@
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
             <link rel= "stylesheet" href='../css/CRUD.css'>
             <link rel= "stylesheet" href='../css/form.css'>
+            <link rel= "stylesheet" href='../css/login.css'>
+            <link rel= "stylesheet" href='../css/navbar.css'>
             {# {{ encore_entry_link_tags('app') }} #}
         {% endblock %}
 
@@ -30,12 +32,29 @@
     </head>
     <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
         <div class="container float-end">
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="../home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../artistas">Artistas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../eventos">Eventos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../salas">Salas</a>
+                    </li>
+                </ul>
+            </div>
             {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-                {{app.user.nombre}} <a href="{{ path('app_usuarios_logout')}}">logout</a>
+                {{app.user.nombre}} 
+                <a href="{{ path('app_usuarios_logout')}}">logout <i class="material-icons">&#xe9ba;</i></a>
             {% else %}
-                <a href="{{ path('app_usuarios_login') }}" > log in </a>
+                <a href="{{ path('app_usuarios_login') }}" > login <i class="material-icons">&#xea77;</i> </a>
             {% endif %}
         </div>
     </nav>
