@@ -38,14 +38,14 @@ class Artistas
     /**
      * @var string|null
      *
-     * @ORM\Column(name="Descripcion", type="text", length=0, nullable=true)
+     * @ORM\Column(name="Descripcion", type="text", length=9999, nullable=true)
      */
     private $descripcion;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="Notas", type="text", length=0, nullable=true)
+     * @ORM\Column(name="Notas", type="text", length=9999, nullable=true)
      */
     private $notas;
 
