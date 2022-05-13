@@ -38,7 +38,7 @@ class Eventos
     /**
      * @var string|null
      *
-     * @ORM\Column(name="Descripcion", type="text", length=0, nullable=true)
+     * @ORM\Column(name="Descripcion", type="text", length=9999, nullable=true)
      */
     private $descripcion;
 
@@ -52,7 +52,7 @@ class Eventos
     /**
      * @var string|null
      *
-     * @ORM\Column(name="Cartel", type="blob", length=0, nullable=true)
+     * @ORM\Column(name="Cartel", type="blob", length=65535, nullable=true)
      */
     private $cartel;
 
