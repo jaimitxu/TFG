@@ -17,11 +17,11 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 class DashboardController extends AbstractDashboardController
 {
     
-    //#[IsGranted('ROLE_ADMIN')]
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/admin', name: 'admin')]
     public function index(): Response
     {
-        //return $this->render('admin/index.html.twig');
+        return $this->render('admin/index.html.twig');
         //return parent::index();
 
         // Option 1. You can make your dashboard redirect to some common page of your backend
