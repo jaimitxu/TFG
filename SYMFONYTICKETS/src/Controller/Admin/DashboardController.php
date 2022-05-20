@@ -2,16 +2,17 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\User;
+use App\Entity\Eventos;
 use App\Entity\Artistas;
 use App\Entity\GenerosMusicales;
-use App\Entity\User;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Controller\Admin\ArtistasCrudController;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 
 class DashboardController extends AbstractDashboardController
@@ -50,8 +51,10 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-dashboard');
+        yield MenuItem::linkToCrud('Users', 'fas fa-user', User::class);
+        yield MenuItem::linkToCrud('Eventos', 'fas fa-calendar', Eventos::class);
         yield MenuItem::linkToCrud('Artistas', 'fas fa-guitar', Artistas::class);
         yield MenuItem::linkToCrud('GenerosMusicales', 'fas fa-music', GenerosMusicales::class);
-        yield MenuItem::linkToCrud('Users', 'fas fa-user', User::class);
+        
     }
 }
