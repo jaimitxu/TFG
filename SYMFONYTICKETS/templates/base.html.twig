@@ -28,6 +28,7 @@
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </head>
+	<header>
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark ">
 		<div class="container float-end">
 			<img src="../images/symfony.png" alt="" width="40" height="40">
@@ -38,13 +39,16 @@
 						<a class="nav-link active" aria-current="page" href="../home">Home</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="../artistas">Artistas</a>
+						<a class="nav-link" href="../artistas">Comprar</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="../eventos">Eventos</a>
+						<a class="nav-link" href="../eventos">Contacto</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="../salas">Salas</a>
+						<a class="nav-link" href="../salas">Calendario</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../admin">Panel de control</a>
 					</li>
 				</ul>
 			</div>
@@ -64,12 +68,20 @@
 						<i class="material-icons">&#xea77;</i>
 					</a>
 				</div>
+			</div>
 			{% endif %}
 		</div>
 	</nav>
+	</header>
     <body>
         {% block body %}
         
         {% endblock %}
+	<nav class="navbar fixed-bottom navbar-expand-lg navbar-dark bg-dark">
+	<div class="container float-end">
+    	<p>&copy; 2022 SymfonyTickets, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+		<a href="#">Back to top</a>
+	</div>
+  	</nav>
     </body>
 </html>

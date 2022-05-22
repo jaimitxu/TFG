@@ -1,5 +1,6 @@
 body {
-	padding-top: 4em;
+	padding-top: 5em;
+	padding-bottom: 5em;
 	color: #b3cdff;
     background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
 	font-family: 'Varela Round', sans-serif;
