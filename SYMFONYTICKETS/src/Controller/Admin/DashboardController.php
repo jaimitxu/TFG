@@ -32,11 +32,11 @@ class DashboardController extends AbstractDashboardController
 
         // Option 2. You can make your dashboard redirect to different pages depending on the user
         
-        if ('ROLE_ADMIN' === $this->getUser()) {
-             return $this->redirect('admin');
-        }else{
-             return $this->redirect('home');
-        }
+        // if ('ROLE_ADMIN' === $this->getUser()) {
+        //     return $this->redirect('admin');
+        // }else{
+        //     return $this->redirect('home');
+        // }
 
         // Option 3. You can render some custom template to display a proper dashboard with widgets, etc.
         // (tip: it's easier if your template extends from @EasyAdmin/page/content.html.twig)

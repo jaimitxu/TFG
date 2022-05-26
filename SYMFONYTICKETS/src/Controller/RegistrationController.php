@@ -53,7 +53,7 @@ class RegistrationController extends AbstractController
             // generate a signed url and email it to the user
             $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
                 (new TemplatedEmail())
-                    ->from('victor.tm1904@gmail.com')
+                    ->from('miguelvelascomartin@gmail.com')
                     ->to($user->getEmail())
                     ->subject('Please Confirm your Email')
                     ->text('Hola querido bienvenido a bordo de Symfony Tickets, esperamos que tengas 

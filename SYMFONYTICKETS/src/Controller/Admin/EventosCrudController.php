@@ -21,7 +21,7 @@ class EventosCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            //IdField::new('id'),
+            IdField::new('id')->OnlyOnDetail(),
             TextField::new('nombre'),
             TextEditorField::new('descripcion'),
             NumberField::new('capacidad'),
