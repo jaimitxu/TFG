@@ -46,12 +46,19 @@ class RegistrationController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
+
+
+
+
             // generate a signed url and email it to the user
             $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
                 (new TemplatedEmail())
-                    ->from(new Address('victor.tm1904@gmail.com', 'SymfonyTickets'))
+                    ->from('victor.tm1904@gmail.com')
                     ->to($user->getEmail())
                     ->subject('Please Confirm your Email')
+                    ->text('Hola querido bienvenido a bordo de Symfony Tickets, esperamos que tengas 
+        una gran y completa experiencia artistica, cualquier duda puedes consultarsela a mi primo Paco".
+        "PD: si te ha llegado esto y no sabes porque lo siento, son pruebas de una app :c disculpa las molestias' )
                     ->htmlTemplate('registration/confirmation_email.html.twig')
             );
             // do anything else you need here, like send an email
@@ -71,6 +78,7 @@ class RegistrationController extends AbstractController
     #[Route('/verify/email', name: 'app_verify_email')]
     public function verifyUserEmail(Request $request, TranslatorInterface $translator): Response
     {
+
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
         // validate email confirmation link, sets User::isVerified=true and persists
@@ -79,12 +87,12 @@ class RegistrationController extends AbstractController
         } catch (VerifyEmailExceptionInterface $exception) {
             $this->addFlash('verify_email_error', $translator->trans($exception->getReason(), [], 'VerifyEmailBundle'));
 
-            return $this->redirectToRoute('app_register');
+            return $this->redirectToRoute('app_home');
         }
 
         // @TODO Change the redirect on success and handle or remove the flash message in your templates
         $this->addFlash('success', 'Your email address has been verified.');
 
-        return $this->redirectToRoute('app_admin');
+        return $this->redirectToRoute('app_home');
     }
 }
