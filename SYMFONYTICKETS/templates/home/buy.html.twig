@@ -4,32 +4,32 @@
 
 {% block body %}
 <div class="container fluid mt-5">
-    <form class="row g-3">
+    <form class="row g-3" action="{{path('app_buy', {id: evento.id})}}" method="post">
         <div class="col-md-6">
             <label class="form-label">Entradas</label>
-            <select class="form-select" aria-label="Default select example">
-                <option selected>Seleccione el tipo de entrada</option>
+            <select class="form-select" aria-label="Default select example" name="selectTipoEntrada">
+                <option selected>Seleccione el tipo de entradas</option>
                 <option value="general">General</option>
                 <option value="reducida">Reducida</option>
-                <option value="menores3">Menores de 3 años</option>
+                {# <option value="menores3">Menores de 3 años</option> #}
               </select>   
         </div>
         <div class="col-md-6">
           <label for="inputnumeros" class="form-label">Número de entradas</label>
-          <input type="number" class="form-control" id="inputnumeros">
+          <input type="number" class="form-control" name="inputNumEntrada">
         </div>
         <div class="col-md-6">
             <label class="form-label">Número de niños</label>
-            <input type="number" class="form-control" id="inputnumerosniño">
+            <input type="number" class="form-control" id="inputNumerosNiño">
             
         </div>
         <div class="col-md-6">
           <label for="inputnumeros" class="form-label">Número de adultos</label>
-          <input type="number" class="form-control" id="inputnumerosa">
+          <input type="number" class="form-control" id="inputNumerosa">
         </div>
         <div class="col-md-6">
             <label for="inputnumeros" class="form-label">Fecha</label>
-            <input type="date" class="form-control" id="inputfecha">
+            <input type="date" class="form-control" id="inputFecha">
           </div>
         <div class="col-12">
           <div class="form-check">
