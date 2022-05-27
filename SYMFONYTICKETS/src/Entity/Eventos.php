@@ -30,6 +30,9 @@ class Eventos
     #[ORM\OneToMany(mappedBy: 'evento_id', targetEntity: Entrada::class)]
     private $entradas;
 
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $imagen;
+
     public function __construct()
     {
         $this->entradas = new ArrayCollection();
@@ -114,6 +117,18 @@ class Eventos
                 $entrada->setEventoId(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getImagen(): ?string
+    {
+        return $this->imagen;
+    }
+
+    public function setImagen(?string $imagen): self
+    {
+        $this->imagen = $imagen;
 
         return $this;
     }
