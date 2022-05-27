@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -37,6 +39,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: 'integer', nullable: true)]
     private $telefono;
+
+    #[ORM\OneToMany(mappedBy: 'usuario_id', targetEntity: Entrada::class)]
+    private $entradas;
+
+    public function __construct()
+    {
+        $this->entradas = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -152,6 +162,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setTelefono(?int $telefono): self
     {
         $this->telefono = $telefono;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Entrada>
+     */
+    public function getEntradas(): Collection
+    {
+        return $this->entradas;
+    }
+
+    public function addEntrada(Entrada $entrada): self
+    {
+        if (!$this->entradas->contains($entrada)) {
+            $this->entradas[] = $entrada;
+            $entrada->setUsuarioId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEntrada(Entrada $entrada): self
+    {
+        if ($this->entradas->removeElement($entrada)) {
+            // set the owning side to null (unless already changed)
+            if ($entrada->getUsuarioId() === $this) {
+                $entrada->setUsuarioId(null);
+            }
+        }
 
         return $this;
     }

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\EventosRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: EventosRepository::class)]
@@ -24,6 +26,14 @@ class Eventos
 
     #[ORM\Column(type: 'date')]
     private $fecha;
+
+    #[ORM\OneToMany(mappedBy: 'evento_id', targetEntity: Entrada::class)]
+    private $entradas;
+
+    public function __construct()
+    {
+        $this->entradas = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -74,6 +84,36 @@ class Eventos
     public function setFecha(\DateTimeInterface $fecha): self
     {
         $this->fecha = $fecha;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Entrada>
+     */
+    public function getEntradas(): Collection
+    {
+        return $this->entradas;
+    }
+
+    public function addEntrada(Entrada $entrada): self
+    {
+        if (!$this->entradas->contains($entrada)) {
+            $this->entradas[] = $entrada;
+            $entrada->setEventoId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEntrada(Entrada $entrada): self
+    {
+        if ($this->entradas->removeElement($entrada)) {
+            // set the owning side to null (unless already changed)
+            if ($entrada->getEventoId() === $this) {
+                $entrada->setEventoId(null);
+            }
+        }
 
         return $this;
     }
