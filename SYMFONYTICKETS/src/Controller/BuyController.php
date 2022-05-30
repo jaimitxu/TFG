@@ -6,31 +6,35 @@ use App\Entity\Entrada;
 use App\Entity\Eventos;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 class BuyController extends AbstractController
 {
 
 
-    // #[Route('/buy/prueba',name:'app_prueba')]
-    // public function hola(Request $request) :Response
-    // {
-    //     dd($request->get('inputnumerosniño'),$request->get('inputnumeros'),$request->getMethod());
-
-    //     return $this->render('home/buy.html.twig', [
-    //         'controller_name' => 'BuyController',
-    //     ]);
-    // }
+    #[Route('/buy',name:'app_buy')]
+    public function index(Request $request, EntityManagerInterface $entityManager) :Response
+    {
+        // dd($request->get('inputnumerosniño'),$request->get('inputnumeros'),$request->getMethod());
 
 
-    #[Route('/buy/{id}', name: 'app_buy')]
-    public function index(Request $request, Eventos $evento, EntityManagerInterface $entityManager, MailerInterface $mailer ): Response
+        $eventos = $entityManager->getRepository(Eventos::class)->findAll();
+
+        return $this->render('home/buy.html.twig', [
+            'controller_name' => 'BuyController',
+            'eventos' => $eventos,
+        ]);
+    }
+
+
+    #[Route('/buy/{id}', name: 'app_buyEvento')]
+    public function comprar(Request $request, Eventos $evento, EntityManagerInterface $entityManager, MailerInterface $mailer, SluggerInterface $slugger ): Response
     {
         
         
@@ -75,13 +79,13 @@ class BuyController extends AbstractController
 
             $email->from('victor.tm1904@gmail.com')->to($usuario->getEmail())->subject('SYMFONY TICKETs compra de entradas')
             ->text('¿Hola que tal? Has obtenido '.$request->get('inputNumEntrada').'entradas para (adultos/niños) '.'para el concierto de '.$evento->getNombre().
-            '</br>'.'Tu numero de entradas es: '.$textoEntradas);
+            '<br>'.'Tu numero de entradas es: '.$textoEntradas);
 
             $mailer->send($email);
         }
 
 
-        return $this->render('home/buy.html.twig', [
+        return $this->render('home/buyEvento.html.twig', [
             'controller_name' => 'BuyController',
             'evento' => $evento,
         ]);
