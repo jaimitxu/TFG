@@ -32,6 +32,7 @@ class BuyController extends AbstractController
         ]);
     }
 
+ 
 
     #[Route('/buy/{id}', name: 'app_buyEvento')]
     public function comprar(Request $request, Eventos $evento, EntityManagerInterface $entityManager, MailerInterface $mailer, SluggerInterface $slugger ): Response
@@ -88,7 +89,18 @@ class BuyController extends AbstractController
         return $this->render('home/buyEvento.html.twig', [
             'controller_name' => 'BuyController',
             'evento' => $evento,
+            'entradas_restantes' => $this->entradasRestantes($evento),
         ]);
+    }
+
+    private function entradasRestantes(Eventos $evento): int
+    {
+
+        $numEntradasCompradas = $evento->getEntradas()->count();
+
+        $numEntradasRestante = $evento->getCapacidad() - $numEntradasCompradas;
+
+        return $numEntradasRestante;
     }
 
 }

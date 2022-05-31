@@ -25,7 +25,7 @@
 
 								<div class="mb-md-5 mt-md-4 pb-5">
 
-									<h2 class="fw-bold mb-2 text-uppercase">Login<i class="material-icons">&#xea77;</i>
+									<h2 class="fw-bold mb-2 text-uppercase">Iniciar Sesión<i class="material-icons">&#xea77;</i>
 									</h2>
 									<p class="text-white-50 mb-5">Por favor, introduce tu correo y contraseña.</p>
 
@@ -36,22 +36,23 @@
 
 									<div class="form-outline form-white mb-4">
 
-										<label for="inputPassword">Password</label>
+										<label for="inputPassword">Contraseña</label>
                                         <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
 									</div>
 									
                                     <input type="hidden" name="_csrf_token"
                                     value="{{ csrf_token('authenticate') }}">
-									<a href="{{ path('app_forgot_password_request') }}">forgot your password?</a>
+									<a href="{{ path('app_forgot_password_request') }}">¿Olvidaste tu contraseña?</a>
                                     <div class="checkbox mb-3 mt-3">
                                         <label>
-                                            <input type="checkbox" name="_remember_me"> Remember me
+                                            <input type="checkbox" name="_remember_me"> Recuerdame
                                         </label>
                                     </div>
                                     <div>
-									<a href="{{ path('app_register') }}">Register</a>
+										<p> ¿Aún no estas registrado? </p>
+										<a href="{{ path('app_register') }}">Registrate</a>
 									</div>
-									<button class="btn btn-outline-light btn-lg px-5 mt-5" type="submit">Login</button>
+									<button class="btn btn-outline-light btn-lg px-5 mt-5" type="submit">Iniciar sesión</button>
                                     
 								</div>
 

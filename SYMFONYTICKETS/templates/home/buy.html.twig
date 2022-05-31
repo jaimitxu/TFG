@@ -4,25 +4,33 @@
 
 {% block body %}
 
-
   <div class="container">
     <div class="row">
 {% for evento in eventos %}
-
+  {# {{dump( evento.entradas|length )}} #}
+  
+{% set entradas_restantes = (evento.capacidad - evento.entradas|length) %}
     <div class="col-4">
       <div class="card" style="width: 18rem;">
         {# <img src="{{ absolute_url(asset('public/images/eventos/' ~ evento.imagen))}}" class="card-img-top" alt="..."> #}
         <img src="{{'./images/eventos/' ~ evento.imagen}}" class="card-img-top" alt="...">
+        
         <div class="card-body">
-          <h5 class="card-title">{{evento.nombre}}</h5>
-          <p class="card-text">{{evento.descripcion}}</p>
-          <a href="{{path('app_buyEvento',{id : evento.id }) }}" class="btn btn-primary">Comprar</a>
+          <h4 class="card-title fw-bold text-primary">{{evento.nombre}}</h4>
+          <h6 class="card-subtitle mb-2 text-muted">{{evento.fecha|date('Y-m-d')}}</h6>
+          <p class="card-text text-primary">{{evento.descripcion}}</p>
+          {% if app.user is null %}
+            <a href="{{path('app_ups') }}" class="btn btn-success">Comprar</a>
+          {% else %}
+            <a href="{{path('app_buyEvento',{id : evento.id }) }}" class="btn btn-success">Comprar</a>
+          {% endif %}
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">Entradas restantes: &nbsp; {{entradas_restantes}}</small>
         </div>
       </div>
     </div>
   
 {% endfor %}
-</div>
-  </div>
 
 {% endblock %}

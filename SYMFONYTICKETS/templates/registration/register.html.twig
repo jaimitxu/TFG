@@ -15,13 +15,20 @@
                         <h1>Register</h1>
 
     {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.name) }}
-        {{ form_row(registrationForm.apellidos) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
+        {{ form_row(registrationForm.name, {
+            label: 'Nombre'
         }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+        {{ form_row(registrationForm.apellidos) }}
+        {{ form_row(registrationForm.email, {
+            label: 'Correo Electronico'
+        }) }}
+        {{ form_row(registrationForm.plainPassword, {
+            label: 'Contraseña'
+        }) }}
+        <a class="fs-7 fw-light" href="{{ path('app_terminos') }}">Mostrar terminos de servicio</a>
+        {{ form_row(registrationForm.agreeTerms,{
+            label: 'Confirmar los Terminos de Servicio'
+        }) }}
 
         <button class="btn btn-outline-light btn-lg px-5 mt-5" type="submit">Register</button>
     {{ form_end(registrationForm) }}

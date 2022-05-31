@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+{% block title %}SYMFONYTICKETS
+{% endblock %}
+
+{% block body %}
+{# 
+<div class="container"> #}
+
+    <div class="col-4 offset-4 pt-5">
+    <div class="card bg-dark text-white" style="border-radius: 1rem;">
+	    <div class="card-body p-5 text-center">
+            <div class="container text-white">
+             {# para el link subrayado text-decoration-underline  #}
+                <p class="text-center">Para comprar un evento necesitas estar registrado e <a class="link-warning" href="{{path('app_login')}}">iniciar sesión</a>.</p>
+                <p class="pt-5 text-center">  También puedes <a class="link-warning " href="{{path('app_register')}}"> registrarte </a> si no lo estas. </p>
+            </div>
+        </div>
+        </div>
+    </div>
+
+{# </div> #}
+
+{% endblock %}

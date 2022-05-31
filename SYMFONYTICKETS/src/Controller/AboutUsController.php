@@ -6,13 +6,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class CalendarController extends AbstractController
+class AboutUsController extends AbstractController
 {
-    #[Route('/calendar', name: 'app_calendar')]
+    #[Route('/about', name: 'app_about')]
     public function index(): Response
     {
-        return $this->render('home/calendar.html.twig', [
-            'controller_name' => 'CalendarController',
+        return $this->render('home/about.html.twig', [
+            'controller_name' => 'AboutUsController',
         ]);
     }
 }
