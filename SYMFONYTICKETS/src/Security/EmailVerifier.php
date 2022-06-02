@@ -25,15 +25,12 @@ class EmailVerifier
 
     public function sendEmailConfirmation(string $verifyEmailRouteName, UserInterface $user, TemplatedEmail $email): void
     {
-        // dd("HOLA",$email);
-
+        
         $signatureComponents = $this->verifyEmailHelper->generateSignature(
             $verifyEmailRouteName,
             $user->getId(),
             $user->getEmail()
         );
-
-
         $context = $email->getContext();
         $context['signedUrl'] = $signatureComponents->getSignedUrl();
         $context['expiresAtMessageKey'] = $signatureComponents->getExpirationMessageKey();
@@ -41,10 +38,7 @@ class EmailVerifier
 
         $email->context($context);
 
-        
-
         $this->mailer->send($email);
-        // dd("hola2",$email,$user);
     }
 
     /**

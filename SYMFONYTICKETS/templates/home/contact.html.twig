@@ -7,14 +7,14 @@
 <form class="row g-3 needs-validation" novalidate>
   <div class="col-md-4">
     <label for="validationCustom01" class="form-label">Nombre</label>
-    <input type="text" class="form-control" id="validationCustom01" value="Mark" required>
+    <input type="text" class="form-control" id="validationCustom01" required>
     <div class="valid-feedback">
       Muy bonito!
     </div>
   </div>
   <div class="col-md-4">
     <label for="validationCustom02" class="form-label">Apellidos</label>
-    <input type="text" class="form-control" id="validationCustom02" value="Otto" required>
+    <input type="text" class="form-control" id="validationCustom02" required>
     <div class="valid-feedback">
       Guapardo!
     </div>
@@ -29,14 +29,7 @@
       </div>
     </div>
   </div>
-  <div class="col-md-6">
-    <label for="validationCustom03" class="form-label">Ciudad</label>
-    <input type="text" class="form-control" id="validationCustom03" required>
-    <div class="invalid-feedback">
-      Mete una ciudad válida.
-    </div>
-  </div>
-  <div class="col-md-3">
+  {# <div class="col-md-3">
     <label for="validationCustom04" class="form-label">País</label>
     <select class="form-select" id="validationCustom04" required>
       <option selected disabled value="">Elige...</option>
@@ -48,13 +41,14 @@
     <div class="invalid-feedback">
       Elige un lugar válido.
     </div>
-  </div>
-  <div class="col-md-3">
-    <label for="validationCustom05" class="form-label">Código Postal</label>
-    <input type="text" class="form-control" id="validationCustom05" required>
-    <div class="invalid-feedback">
-      Elige un código postal válido.
+  </div> #}
+  <div class="col-8">
+    <label for="validationCustom03" class="form-label">¿Porque nos contactas?</label>
+    <textarea type="text" class="form-control" id="validationCustom03" rows="4" required></textarea>
+    <div class="valid-feedback">
+      Guapardo!
     </div>
+    
   </div>
   <div class="col-12">
     <div class="form-check">
@@ -63,7 +57,7 @@
        ¿ Aceptas los términos y condiciones de uso ?
       </label>
       <div class="invalid-feedback">
-        Debes aceptarlo o mueres
+        Acepta los terminos y condiciones por favor.
       </div>
     </div>
   </div>
