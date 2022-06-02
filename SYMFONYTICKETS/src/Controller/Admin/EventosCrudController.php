@@ -4,11 +4,12 @@ namespace App\Controller\Admin;
 
 use App\Entity\Eventos;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 
 class EventosCrudController extends AbstractCrudController
 {
@@ -25,7 +26,11 @@ class EventosCrudController extends AbstractCrudController
             TextField::new('nombre'),
             TextEditorField::new('descripcion'),
             NumberField::new('capacidad'),
-            DateField::new('fecha')
+            DateField::new('fecha'),
+            ImageField::new('imagen') 
+            ->setBasePath('uploads/images')
+            ->setUploadDir('public/images/eventos')
+            ->onlyOnForms(),
         ];
     }
     
